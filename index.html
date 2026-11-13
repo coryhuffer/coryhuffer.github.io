@@ -3,76 +3,417 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Cory Huffer's infrastructure engineering portfolio, featuring networking, virtualization, storage, and homelab projects.">
   <title>Cory Huffer | Infrastructure & Network Engineering</title>
+
   <style>
+    :root {
+      --bg: #0b1220;
+      --surface: #131e30;
+      --border: #283950;
+      --text: #edf3fb;
+      --muted: #a6b6ca;
+      --accent: #57a6ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      max-width: 850px;
-      margin: 60px auto;
-      padding: 0 20px;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Arial, sans-serif;
       line-height: 1.7;
-      color: #222;
     }
-    h1 { margin-bottom: 5px; }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: auto;
+      padding: 0 24px;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 18px 0;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .hero {
+      padding: 95px 0 75px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
+      line-height: 1.15;
+      margin: 15px 0;
+    }
+
     h2 {
-      margin-top: 40px;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 8px;
+      font-size: 1.8rem;
+      margin-bottom: 25px;
     }
-    a { color: #0969da; }
-    .subtitle { color: #555; }
+
+    h3 {
+      margin-top: 0;
+    }
+
+    .lead {
+      max-width: 760px;
+      font-size: 1.15rem;
+      color: var(--muted);
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-weight: 600;
+      border: 1px solid var(--accent);
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: #07111e;
+    }
+
+    .button.secondary {
+      color: var(--accent);
+    }
+
+    section {
+      padding: 55px 0;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 30px;
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    .project-label {
+      color: var(--accent);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+    }
+
+    .skill-card h3 {
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    .skill-card p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .project-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 22px 0;
+    }
+
+    .tag {
+      background: #20324a;
+      color: #c9d9eb;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+
+    .project-image {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin: 20px 0;
+      background: #fff;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 50px;
+      padding: 30px 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding: 65px 0 45px;
+      }
+
+      section {
+        padding: 35px 0;
+      }
+
+      .card {
+        padding: 20px;
+      }
+    }
   </style>
 </head>
+
 <body>
 
-  <h1>Cory Huffer</h1>
-  <p class="subtitle">Infrastructure | Networking | Systems Engineering</p>
+  <header>
+    <div class="container">
+      <nav>
+        <a class="brand" href="#">Cory Huffer</a>
 
-  <h2>About Me</h2>
-  <p>
-    I am an infrastructure and technology enthusiast with a background
-    in aerospace and defense systems. Since 2020, I have designed,
-    built, and continuously expanded a personal homelab to develop
-    hands-on experience with networking, virtualization, storage,
-    and systems administration.
-  </p>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#skills">Technical Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="https://github.com/coryhuffer"
+             target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </nav>
+    </div>
+  </header>
 
-  <h2>Technical Experience</h2>
-  <p>
-    Network architecture, VLAN segmentation, pfSense firewalls,
-    UniFi switching and wireless, XCP-ng virtualization,
-    TrueNAS storage, Linux administration, Docker,
-    and self-hosted infrastructure services.
-  </p>
+  <main>
 
-  <h2>Featured Project</h2>
-  <h3>Homelab Infrastructure</h3>
-  <p>
-    A multi-generation infrastructure project documenting the design,
-    implementation, and evolution of my home network and computing
-    environment, including network topology, virtualization,
-    storage, and infrastructure management.
-  </p>
+    <div class="container">
+      <div class="hero">
+        <div class="eyebrow">Infrastructure & Network Engineering</div>
 
-  <p>
-    <a href="https://github.com/coryhuffer/homelab_infrastructure">
-      View Homelab Infrastructure Project →
-    </a>
-  </p>
+        <h1>Cory Huffer</h1>
 
-  <h2>Professional Interests</h2>
-  <p>
-    Network engineering, infrastructure architecture,
-    routing and switching, cloud technologies,
-    and infrastructure automation.
-  </p>
+        <p class="lead">
+          Building and managing infrastructure through hands-on
+          experience in networking, virtualization, storage,
+          Linux systems, and self-hosted technologies.
+        </p>
 
-  <h2>GitHub</h2>
-  <p>
-    <a href="https://github.com/coryhuffer">
-      View My GitHub Profile →
-    </a>
-  </p>
+        <div class="buttons">
+          <a class="button primary" href="#projects">
+            Explore My Projects
+          </a>
+
+          <a class="button secondary"
+             href="https://github.com/coryhuffer"
+             target="_blank" rel="noopener noreferrer">
+            GitHub Profile
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="container">
+        <h2>About Me</h2>
+
+        <p class="lead">
+          My professional background includes more than 19 years
+          of experience in aerospace and defense environments,
+          working with complex technical systems and
+          mission-critical operations.
+        </p>
+
+        <p class="lead">
+          Since 2020, I have designed and expanded a personal
+          homelab as a practical environment for developing
+          infrastructure engineering skills. The environment
+          has evolved through multiple generations of hardware,
+          network architecture, virtualization platforms,
+          and storage systems.
+        </p>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <h2>Technical Skills & Technologies</h2>
+
+        <div class="skills">
+
+          <div class="skill-card">
+            <h3>Networking</h3>
+            <p>
+              pfSense, UniFi, VLANs, routing,
+              switching, firewall policies,
+              and network segmentation.
+            </p>
+          </div>
+
+          <div class="skill-card">
+            <h3>Virtualization</h3>
+            <p>
+              XCP-ng, Xen Orchestra, Proxmox,
+              virtual machine deployment,
+              and infrastructure management.
+            </p>
+          </div>
+
+          <div class="skill-card">
+            <h3>Storage & Systems</h3>
+            <p>
+              TrueNAS CORE and SCALE,
+              ZFS, Linux administration,
+              and storage infrastructure.
+            </p>
+          </div>
+
+          <div class="skill-card">
+            <h3>Infrastructure Services</h3>
+            <p>
+              Docker, NetBox, Uptime Kuma,
+              Home Assistant, Trilium,
+              and self-hosted applications.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <h2>Featured Projects</h2>
+
+        <div class="card">
+
+          <div class="project-label">Featured Infrastructure Project</div>
+
+          <h3>Homelab Infrastructure</h3>
+
+          <p>
+            A continuously evolving infrastructure environment
+            built to explore enterprise networking concepts,
+            virtualization, storage, systems administration,
+            and infrastructure architecture.
+          </p>
+
+          <p>
+            The project documents the evolution of my homelab
+            from its original 2020 deployment through multiple
+            network and compute upgrades, including the
+            implementation of pfSense routing, UniFi switching,
+            XCP-ng virtualization, and TrueNAS storage.
+          </p>
+
+          <div class="project-details">
+            <span class="tag">pfSense</span>
+            <span class="tag">UniFi</span>
+            <span class="tag">XCP-ng</span>
+            <span class="tag">TrueNAS</span>
+            <span class="tag">Linux</span>
+            <span class="tag">VLANs</span>
+          </div>
+
+          <img
+            class="project-image"
+            src="https://raw.githubusercontent.com/coryhuffer/homelab_infrastructure/main/images/homelab-infrastructure.png"
+            alt="Homelab logical infrastructure topology diagram"
+            loading="lazy"
+          >
+
+          <p>
+            <a class="button primary"
+               href="https://github.com/coryhuffer/homelab_infrastructure"
+               target="_blank" rel="noopener noreferrer">
+              View Project Documentation →
+            </a>
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>Professional Focus</h2>
+
+        <p class="lead">
+          Continuing to develop expertise in network engineering,
+          infrastructure architecture, advanced routing and
+          switching, cloud technologies, and infrastructure
+          automation through hands-on projects and structured learning.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      Cory Huffer · Infrastructure & Network Engineering
+      <br>
+      <a href="https://github.com/coryhuffer">GitHub</a>
+    </div>
+  </footer>
 
 </body>
 </html>
