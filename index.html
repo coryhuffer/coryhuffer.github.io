@@ -1,258 +1,75 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Cory Huffer - Networking and infrastructure projects">
-  <title>Cory Huffer | Infrastructure Projects</title>
-
+  <meta name="description" content="Cory Huffer's network and infrastructure engineering projects, including a multi-generation homelab.">
+  <title>Cory Huffer — Infrastructure Lab</title>
   <style>
-    :root {
-      --background: #0d1117;
-      --surface: #161b22;
-      --border: #30363d;
-      --text: #e6edf3;
-      --muted: #9198a1;
-      --accent: #58a6ff;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      background: var(--background);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.7;
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    header {
-      border-bottom: 1px solid var(--border);
-      padding: 24px 0;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-
-    h2 {
-      font-size: 1.4rem;
-      margin-bottom: 18px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    h3 {
-      margin-bottom: 8px;
-    }
-
-    .subtitle {
-      color: var(--muted);
-      margin: 5px 0 0;
-    }
-
-    section {
-      margin: 50px 0;
-    }
-
-    .project {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 24px;
-    }
-
-    .project p {
-      color: var(--muted);
-    }
-
-    .topology {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 6px;
-      margin: 24px 0;
-      background: white;
-    }
-
-    .details {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 20px;
-    }
-
-    .detail {
-      padding: 16px 0;
-    }
-
-    .detail h3 {
-      font-size: 1rem;
-      margin-top: 0;
-    }
-
-    .detail p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 25px 0;
-      margin-top: 60px;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
+    :root{color-scheme:dark;--bg:#0b1016;--panel:#131c26;--panel2:#172330;--line:#2a3a48;--ink:#ecf3f6;--muted:#a4b6c2;--accent:#70d7c0;--blue:#8dbfff}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 system-ui,-apple-system,Segoe UI,sans-serif}a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}.shell{max-width:1320px;margin:auto;display:grid;grid-template-columns:270px minmax(0,1fr);min-height:100vh}.sidebar{border-right:1px solid var(--line);padding:42px 26px;background:#0e1720}.sidebar-inner{position:sticky;top:35px}.monogram{display:grid;place-items:center;width:54px;height:54px;border:1px solid var(--accent);border-radius:12px;color:var(--accent);font-weight:800;letter-spacing:.08em;margin-bottom:26px}.sidebar h1{font-size:1.55rem;line-height:1.2;margin:0 0 8px}.sidebar .role{color:var(--muted);margin:0 0 32px}.side-label,.kicker,.eyebrow{font-size:.7rem;font-weight:750;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}.side-label{color:#839baa;margin:0 0 12px}.nav{display:grid;gap:3px;margin-bottom:35px}.nav a{padding:9px 11px;border-left:2px solid transparent;color:var(--muted)}.nav a:hover{background:var(--panel);border-color:var(--accent);color:var(--ink);text-decoration:none}.side-note{border-top:1px solid var(--line);padding-top:22px;color:var(--muted);font-size:.87rem}.side-note a{display:block;margin-top:12px}.content{min-width:0;padding:48px clamp(24px,5vw,72px) 60px}.topline{display:flex;justify-content:space-between;gap:16px;align-items:center;color:var(--muted);font-size:.82rem;border-bottom:1px solid var(--line);padding-bottom:16px}.status{display:inline-flex;align-items:center;gap:9px}.dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px #70d7c01a}.intro{padding:46px 0 34px}.intro h2{font-size:clamp(2rem,4.6vw,3.5rem);line-height:1.12;letter-spacing:-.04em;margin:12px 0 18px;max-width:780px}.intro p{max-width:740px;color:var(--muted);font-size:1.06rem;margin:0}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}.button{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:7px;padding:11px 16px;font-weight:650;color:var(--ink)}.button.primary{background:var(--accent);color:#081612;border-color:var(--accent)}.button:hover{text-decoration:none;filter:brightness(1.08)}.section{margin-top:44px;scroll-margin-top:20px}.section-title{display:flex;align-items:baseline;gap:15px;margin-bottom:16px}.section-title .number{font:700 .76rem ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--accent)}.section-title h2{font-size:1.3rem;letter-spacing:-.015em;margin:0}.feature{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel)}.feature-top{padding:25px 27px 20px}.feature h3{font-size:1.5rem;margin:8px 0 9px}.feature p,.plain{color:var(--muted);margin:0;max-width:800px}.figure{margin:0;background:#eef3f4;padding:18px;display:grid;place-items:center}.figure img{display:block;width:100%;max-height:560px;object-fit:contain}.figure figcaption{color:#394852;font-size:.78rem;margin-top:10px;text-align:center}.feature-bottom{padding:17px 27px;border-top:1px solid var(--line);display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between}.tags{display:flex;flex-wrap:wrap;gap:8px}.tag{border:1px solid #36505d;border-radius:5px;padding:3px 9px;color:#c1d7df;font: .78rem ui-monospace,SFMono-Regular,Consolas,monospace}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.tile{border:1px solid var(--line);border-radius:9px;background:var(--panel);padding:20px}.tile h3{margin:0 0 8px;font-size:1rem}.tile p{color:var(--muted);margin:0}.timeline{border-left:1px solid #3c5963;margin-left:8px;padding-left:25px;display:grid;gap:22px}.entry{position:relative}.entry:before{content:"";position:absolute;left:-31px;top:8px;width:10px;height:10px;border:2px solid var(--accent);border-radius:50%;background:var(--bg)}.entry .date{font:.77rem ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--accent)}.entry h3{margin:3px 0 4px;font-size:1rem}.entry p{color:var(--muted);margin:0}.footer{margin-top:60px;border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font-size:.85rem}@media(max-width:820px){.shell{display:block}.sidebar{border-right:0;border-bottom:1px solid var(--line);padding:22px 24px}.sidebar-inner{position:static}.monogram{display:none}.sidebar h1{font-size:1.3rem}.sidebar .role{margin-bottom:12px}.side-label,.side-note{display:none}.nav{display:flex;flex-wrap:wrap;gap:8px;margin:0}.nav a{padding:5px 0;margin-right:12px;border:0}.content{padding:24px}.intro{padding-top:30px}}@media(max-width:560px){.grid{grid-template-columns:1fr}.topline{align-items:flex-start;flex-direction:column}.feature-top,.feature-bottom{padding:19px}.figure{padding:8px}.intro h2{font-size:2.2rem}}
   </style>
 </head>
-
 <body>
-
-  <header>
-    <div class="container">
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      <div class="monogram" aria-hidden="true">CH</div>
       <h1>Cory Huffer</h1>
-      <p class="subtitle">Networking | Infrastructure | Systems Administration</p>
+      <p class="role">Network &amp; Infrastructure Projects</p>
+      <p class="side-label">Navigate</p>
+      <nav class="nav" aria-label="Sections">
+        <a href="#overview">Overview</a>
+        <a href="#topology">Network topology</a>
+        <a href="#systems">Current systems</a>
+        <a href="#history">Build history</a>
+        <a href="#next">Next steps</a>
+      </nav>
+      <div class="side-note">Hands-on infrastructure work since 2020.
+        <a href="https://github.com/coryhuffer" target="_blank" rel="noopener noreferrer">GitHub profile ↗</a>
+        <a href="https://github.com/coryhuffer/homelab_infrastructure" target="_blank" rel="noopener noreferrer">Project repository ↗</a>
+      </div>
     </div>
-  </header>
-
-  <main class="container">
-
-    <section>
-      <h2>About</h2>
-      <p>
-        My background is in aerospace and defense systems, where I spent
-        more than 19 years working with complex technical equipment and
-        mission-critical operations.
-      </p>
-      <p>
-        I started building my homelab in 2020 to gain practical experience
-        with networking, Linux, virtualization, and storage. What began
-        as a small network installation has grown into an environment
-        where I can test configurations, deploy services, and work
-        through infrastructure design problems.
-      </p>
+  </aside>
+  <main class="content">
+    <div class="topline"><span>PROJECT PORTFOLIO / HOMELAB</span><span class="status"><span class="dot" aria-hidden="true"></span>Active learning environment</span></div>
+    <section class="intro" id="overview">
+      <span class="eyebrow">Design · Build · Operate</span>
+      <h2>Learning infrastructure by building and running it.</h2>
+      <p>My background is in aerospace and defense systems. In 2020, I started a homelab to get practical experience with networking, Linux, virtualization, and storage. I use it to test designs, deploy services, troubleshoot failures, and learn how infrastructure components fit together.</p>
+      <div class="actions"><a class="button primary" href="#topology">Explore the lab ↓</a><a class="button" href="https://github.com/coryhuffer/homelab_infrastructure" target="_blank" rel="noopener noreferrer">Read the documentation ↗</a></div>
     </section>
-
-    <section>
-      <h2>Homelab Infrastructure</h2>
-
-      <div class="project">
-        <p>
-          My homelab has gone through several major revisions as my
-          interests and technical requirements have changed. The current
-          environment uses pfSense for routing and firewall management,
-          UniFi for switching and wireless, XCP-ng for virtualization,
-          and TrueNAS for storage.
-        </p>
-
-        <img
-          class="topology"
-          src="https://raw.githubusercontent.com/coryhuffer/homelab_infrastructure/main/images/homelab-infrastructure.png"
-          alt="Homelab logical network topology"
-          loading="lazy"
-        >
-
-        <p>
-          <a href="https://github.com/coryhuffer/homelab_infrastructure">
-            View homelab documentation on GitHub →
-          </a>
-        </p>
+    <section class="section" id="topology">
+      <div class="section-title"><span class="number">01 /</span><h2>Logical infrastructure</h2></div>
+      <article class="feature">
+        <div class="feature-top"><span class="kicker">Featured project</span><h3>Homelab network and compute</h3><p>A segmented network supporting production services and a separate lab environment. The diagram is a logical overview; the repository documents the hardware changes and design decisions behind it.</p></div>
+        <figure class="figure"><img src="https://raw.githubusercontent.com/coryhuffer/homelab_infrastructure/main/images/homelab-infrastructure.png" alt="Logical overview of the homelab network, firewall, switching, compute, storage and services" loading="lazy"><figcaption>Logical infrastructure overview — see the repository for context and project history.</figcaption></figure>
+        <div class="feature-bottom"><div class="tags"><span class="tag">pfSense</span><span class="tag">UniFi</span><span class="tag">XCP-ng</span><span class="tag">TrueNAS SCALE</span></div><a href="https://github.com/coryhuffer/homelab_infrastructure" target="_blank" rel="noopener noreferrer">Project README ↗</a></div>
+      </article>
+    </section>
+    <section class="section" id="systems">
+      <div class="section-title"><span class="number">02 /</span><h2>Current systems</h2></div>
+      <div class="grid">
+        <div class="tile"><h3>Network &amp; security</h3><p>Netgate 4100 running pfSense; UniFi managed switching and wireless; VLANs, firewall rules, and network segmentation.</p></div>
+        <div class="tile"><h3>Compute</h3><p>Two AMD Ryzen 9 XCP-ng hosts with Xen Orchestra. Separate production and lab environments for testing and maintenance.</p></div>
+        <div class="tile"><h3>Storage</h3><p>Two AMD Ryzen 3 storage systems running TrueNAS SCALE and ZFS.</p></div>
+        <div class="tile"><h3>Management &amp; services</h3><p>NetBox, Uptime Kuma, UniFi Network Controller, Trilium, Docker, and Home Assistant.</p></div>
       </div>
     </section>
-
-    <section>
-      <h2>Current Infrastructure</h2>
-
-      <div class="details">
-
-        <div class="detail">
-          <h3>Networking</h3>
-          <p>
-            Netgate 4100 running pfSense, UniFi managed switches
-            and wireless, VLAN segmentation, and firewall policies.
-          </p>
-        </div>
-
-        <div class="detail">
-          <h3>Virtualization</h3>
-          <p>
-            Two AMD Ryzen 9 XCP-ng hosts with Xen Orchestra
-            for virtual machine management.
-          </p>
-        </div>
-
-        <div class="detail">
-          <h3>Storage</h3>
-          <p>
-            Two AMD Ryzen 3 storage servers running TrueNAS SCALE
-            with ZFS.
-          </p>
-        </div>
-
-        <div class="detail">
-          <h3>Infrastructure Services</h3>
-          <p>
-            NetBox, Uptime Kuma, UniFi Network Controller,
-            Trilium, Docker, and Home Assistant.
-          </p>
-        </div>
-
+    <section class="section" id="history">
+      <div class="section-title"><span class="number">03 /</span><h2>How the lab evolved</h2></div>
+      <div class="timeline">
+        <div class="entry"><span class="date">2020 / V1</span><h3>First deployment</h3><p>Installed Cat6 cabling and PoE cameras; built an 11U rack around pfSense, managed switching, FreeNAS storage, and Linux test machines.</p></div>
+        <div class="entry"><span class="date">2023 / V2</span><h3>Network redesign</h3><p>Moved to a Netgate 4100, UniFi switching and wireless, a larger rack, and a dedicated distribution switch.</p></div>
+        <div class="entry"><span class="date">2024–PRESENT / V3</span><h3>Compute and storage rebuild</h3><p>Replaced earlier systems with Ryzen-based XCP-ng hosts and TrueNAS storage; organized production and lab workloads separately.</p></div>
       </div>
     </section>
-
-    <section>
-      <h2>Project History</h2>
-      <p>
-        <strong>2020:</strong> Initial network installation, 11U rack,
-        pfSense firewall, managed switching, FreeNAS storage,
-        and Linux systems.
-      </p>
-      <p>
-        <strong>2023:</strong> Network redesign with a Netgate 4100,
-        UniFi switching and wireless, and a larger rack.
-      </p>
-      <p>
-        <strong>2024–Present:</strong> Migration to AMD Ryzen compute
-        and storage hardware, XCP-ng virtualization, and TrueNAS SCALE.
-      </p>
+    <section class="section" id="next">
+      <div class="section-title"><span class="number">04 /</span><h2>What I'm working toward</h2></div>
+      <p class="plain">Deeper routing and switching experience, including OSPF, BGP, private autonomous systems, network automation, and cloud infrastructure. The lab gives me a place to work through these topics on equipment I operate myself.</p>
     </section>
-
-    <section>
-      <h2>Areas I'm Exploring</h2>
-      <p>
-        Advanced routing and switching, BGP, OSPF, private autonomous
-        systems, network automation, and cloud infrastructure.
-      </p>
-    </section>
-
+    <footer class="footer">Cory Huffer · <a href="https://github.com/coryhuffer">GitHub</a> · <a href="https://github.com/coryhuffer/homelab_infrastructure">Homelab documentation</a></footer>
   </main>
-
-  <footer>
-    <div class="container">
-      <a href="https://github.com/coryhuffer">GitHub Profile</a>
-      &nbsp;·&nbsp;
-      <a href="https://github.com/coryhuffer/homelab_infrastructure">
-        Homelab Repository
-      </a>
-    </div>
-  </footer>
-
+</div>
 </body>
 </html>
